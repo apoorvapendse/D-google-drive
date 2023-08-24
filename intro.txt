@@ -1,0 +1,4 @@
+Makes use of IPFS network
+IPFS gives a unique hash(similar to keccak256 or SHA256 nonce hashing) for every piece of content you upload on it and this hash is called CID
+Data once uploaded on ipfs can never be deleted or tampered and a given CID will always point to the same data;
+IPFS is a peer to peer filesystem that enables users to store, share and access files in a Decentralized network
