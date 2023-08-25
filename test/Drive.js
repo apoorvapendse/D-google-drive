@@ -31,7 +31,6 @@ describe("Running Tests", () => {
     expect(ownerArray[1].access).to.equal(true);
     await Drive.addAccess(person1.address);
     await Drive.addAccess(person3.address);
-
     ownerArray = await Drive.connect(owner).getSharedOwners();
     expect(ownerArray[0].access).to.equal(true);
     expect(ownerArray[1].access).to.equal(true);
