@@ -16,13 +16,17 @@ const App = () => {
     const wallet = async () => {
       if (provider) {
         let accounts = await provider.send("eth_requestAccounts", []);
-
+        window.ethereum.on("accountsChanged", () => {
+          window.location.reload();
+        });
+        window.ethereum.on("chainChanged", () => {
+          window.location.reload();
+        });
         setAccount(accounts[0]);
 
         const signer = await provider.getSigner();
 
         const address = await signer.getAddress();
-        console.log(address);
 
         // console.log(accounts);
         let contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
@@ -32,7 +36,6 @@ const App = () => {
           MyDriveAbi.abi,
           signer
         );
-        console.log(contract);
 
         setContract(contract);
         setProvider(provider);
@@ -46,8 +49,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Main />
-      <FileDisplay />
+      <Main contract={contract} account={account} />
+      <FileDisplay contract={contract} account={account} />
     </div>
   );
 };
