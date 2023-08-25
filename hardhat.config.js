@@ -9,4 +9,12 @@ module.exports = {
     noColors: true,
     currency: "USD",
   },
+  paths: {
+    artifacts: "./frontend/src/artifacts",
+  },
+  networks: {
+    localhost: {
+      url: "http://127.0.0.1:8545",
+    },
+  },
 };
