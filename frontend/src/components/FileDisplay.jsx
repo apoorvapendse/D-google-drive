@@ -32,13 +32,28 @@ const FileDisplay = ({ account, contract }) => {
     async function revokeAccessAddress() {
         try {
             let addressToRevokeAccess = document.querySelector("select").value
-            let index = addressToRevokeAccess.indexOf(",");
-            console.log("index:", index)
-            let target = addressToRevokeAccess.substring(0, index);
-            console.log(target)
 
-            await contract.revokeAccess(target);
-            alert("removed accessor:", target);
+            let index = addressToRevokeAccess.indexOf(",");
+
+            let target = addressToRevokeAccess.substring(0, index);
+
+
+            let newArray = [...otherAddresses];
+            console.log("hello")
+            for (let i = 0; i < newArray.length; i++) {
+                if (JSON.stringify(target) == JSON.stringify(newArray[i][0])) {
+                    console.log('found at', i)
+                    newArray.splice(i, 1);
+                    console.log("after splicing:", newArray)
+                    setOtherAddresses(newArray)
+
+                    await contract.revokeAccess(target);
+                    alert("removed accessor:", target);
+                    return;
+                }
+
+            }
+
         } catch (error) {
             console.log(error)
         }
@@ -47,8 +62,11 @@ const FileDisplay = ({ account, contract }) => {
     async function getAccessibleAddresses() {
 
         let otherAddresses = await contract.getSharedOwners();
-        setOtherAddresses(otherAddresses)
-        console.log(otherAddresses)
+        const accessibleAddress = otherAddresses.filter((item) => {
+            return item[1]
+        })
+        console.log(accessibleAddress)
+        setOtherAddresses(accessibleAddress)
     }
 
 

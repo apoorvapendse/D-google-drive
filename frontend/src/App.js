@@ -29,7 +29,7 @@ const App = () => {
         const address = await signer.getAddress();
 
         // console.log(accounts);
-        let contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+        let contractAddress = "0x953CB9C8d78B8f177B0f435D7cAB382eB0B524B4";
 
         const contract = new ethers.Contract(
           contractAddress,
