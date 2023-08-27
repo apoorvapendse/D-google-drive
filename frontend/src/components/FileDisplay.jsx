@@ -84,10 +84,12 @@ const FileDisplay = ({ account, contract }) => {
 
                 {images.map((item, index) => {
                     return (
-                        <a href={item} target='_blank' style={{ height: "100%", width: "100%" }}>
 
-                            <img src={item} key={index} className='image' alt="" srcset="" />
-                        </a>
+
+
+                        <img src={item} key={index} style={{ height: "100%", width: "100%", cursor: "pointer", margin: "10px" }} className='image' alt="" srcset="" onClick={() => {
+                            window.open(item, "_blank")
+                        }} />
                     )
                 })}
 
@@ -107,6 +109,8 @@ const FileDisplay = ({ account, contract }) => {
                     setAddress(e.target.value)
                 }}
                 style={{
+                    margin: "auto",
+
                     color: "black"
                     , width: "30%",
                     textAlign: "center"

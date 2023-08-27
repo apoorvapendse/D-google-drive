@@ -26,7 +26,6 @@ html {
 .filedisplay {
   height: 40vh;
   display: flex;
-  gap: 12px;
   padding: 20px;
   align-items: center;
   min-width: 95vw;
